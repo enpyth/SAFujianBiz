@@ -1,53 +1,37 @@
 import Image from 'next/image'
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-interface Director {
-  name: string
-  company: string
-  description: string
-  image: string
+interface DirectorProps {
+  director: {
+    name: string;
+    company: string;
+    description: string;
+    image: string;
+  }
 }
 
-export default function DirectorCard({ director }: { director: Director }) {
+const DirectorCard = ({ director }: DirectorProps) => {
   return (
-    <Card className="flex flex-col h-full hover:shadow-lg transition-shadow duration-300">
+    <Card className="flex flex-col h-full">
+      <div className="relative w-full h-64">
+        <Image
+          src={director.image}
+          alt={director.name}
+          fill
+          className="object-cover rounded-t-lg"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        />
+      </div>
       <CardHeader>
-        <div className="w-full h-48 relative mb-4">
-          <Image src={director.image} alt={director.name} layout="fill" objectFit="cover" className="rounded-t-lg" />
-        </div>
         <CardTitle>{director.name}</CardTitle>
-        <CardDescription>{director.company}</CardDescription>
+        <p className="text-sm text-gray-500">{director.company}</p>
       </CardHeader>
       <CardContent>
-        <p className="line-clamp-3">{director.description}</p>
+        <p className="text-gray-600">{director.description}</p>
       </CardContent>
-      <CardFooter className="mt-auto">
-        <Dialog>
-          <DialogTrigger asChild>
-            <Button variant="outline" className="w-full">查看详情</Button>
-          </DialogTrigger>
-          <DialogContent>
-            <DialogHeader>
-              <DialogTitle>{director.name}</DialogTitle>
-              <DialogDescription>{director.company}</DialogDescription>
-            </DialogHeader>
-            <div className="mt-4">
-              <Image src={director.image} alt={director.name} width={300} height={300} className="rounded-lg mx-auto mb-4" />
-              <p>{director.description}</p>
-            </div>
-          </DialogContent>
-        </Dialog>
-      </CardFooter>
     </Card>
   )
 }
+
+export default DirectorCard
 

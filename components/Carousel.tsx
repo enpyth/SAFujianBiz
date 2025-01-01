@@ -11,6 +11,11 @@ interface CarouselProps {
 }
 
 export default function Carousel({ images, fullWidth = false }: CarouselProps) {
+  if (!images || images.length === 0) {
+    console.log('No images provided to Carousel');
+    return null;
+  }
+
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const nextSlide = () => {
@@ -38,9 +43,10 @@ export default function Carousel({ images, fullWidth = false }: CarouselProps) {
           <Image
             src={image.src}
             alt={image.alt}
-            layout="fill"
-            objectFit="cover"
-            className={fullWidth ? '' : 'rounded-lg'}
+            fill
+            sizes="100vw"
+            priority={index === 0}
+            className={`object-cover ${fullWidth ? '' : 'rounded-lg'}`}
           />
         </div>
       ))}
