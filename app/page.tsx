@@ -26,13 +26,7 @@ export default async function Home() {
       <Suspense fallback={<Loading />}>
         {/* 轮播图 */}
         <div className="w-full relative">
-          {carouselImages && carouselImages.length > 0 ? (
-            <Carousel images={carouselImages} fullWidth={true} />
-          ) : (
-            <div className="w-full h-[400px] bg-gray-200 flex items-center justify-center">
-              <p>No carousel images available</p>
-            </div>
-          )}
+          <Carousel images={carouselImages} fullWidth={true} />
         </div>
 
         {/* 商会简介 */}

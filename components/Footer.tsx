@@ -6,10 +6,10 @@ const Footer = () => {
     <footer className="bg-gray-100 mt-10">
       <div className="container mx-auto px-6 py-8">
         <div className="flex flex-wrap justify-between">
-          <div className="w-full md:w-1/4 mb-6 md:mb-0">
+          {/* <div className="w-full md:w-1/4 mb-6 md:mb-0">
             <h3 className="text-lg font-semibold mb-4">关于商会</h3>
             <p className="text-sm text-gray-600">我们致力于促进商业合作、推动行业发展、为会员提供全方位服务与支持。</p>
-          </div>
+          </div> */}
           <div className="w-full md:w-1/4 mb-6 md:mb-0">
             <h3 className="text-lg font-semibold mb-4">快速链接</h3>
             <ul className="text-sm text-gray-600">

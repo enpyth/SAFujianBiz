@@ -1,15 +1,11 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Home, Info, User, FileText, Building2, Calendar } from 'lucide-react'
-import { SignInButton, SignUpButton, UserButton, useUser } from "@clerk/nextjs"
 
 const Header = () => {
-  const { isSignedIn } = useUser();
-
   return (
     <header className="bg-white shadow-md">
       <div className="container mx-auto px-6 py-4">
@@ -21,15 +17,16 @@ const Header = () => {
             <ul className="flex space-x-4">
               <li><Button variant="ghost" asChild><Link href="/"><Home className="mr-2 h-4 w-4" /> 首页</Link></Button></li>
               <li><Button variant="ghost" asChild><Link href="/about"><Info className="mr-2 h-4 w-4" /> 商会简介</Link></Button></li>
-              <li><Button variant="ghost" asChild><Link href="/corporate-members"><Building2 className="mr-2 h-4 w-4" /> 企业会员</Link></Button></li>
+              <li><Button variant="ghost" asChild><Link href="/enterprises"><Building2 className="mr-2 h-4 w-4" /> 企业会员</Link></Button></li>
               <li><Button variant="ghost" asChild><Link href="/events"><Calendar className="mr-2 h-4 w-4" /> 商会活动</Link></Button></li>
               <li><Button variant="ghost" asChild><Link href="/board-meetings"><FileText className="mr-2 h-4 w-4" /> 理事会议</Link></Button></li>
+              <li><Button variant="ghost" asChild><Link href="/protected"><User className="mr-2 h-4 w-4" /> 我的</Link></Button></li>
             </ul>
             
-            {!isSignedIn ? (
+            {/* {!1 ? ( // 根据登录状态显示不同的按钮
               <div className="flex items-center space-x-4">
                 <Button asChild variant="outline">
-                  <Link href="/sign-in">登录</Link>
+                  <Link href="/login">登录</Link>
                 </Button>
                 <Button asChild>
                   <Link href="/sign-up">注册</Link>
@@ -42,9 +39,8 @@ const Header = () => {
                     <User className="mr-2 h-4 w-4" /> 我的
                   </Link>
                 </Button>
-                <UserButton afterSignOutUrl="/" />
               </div>
-            )}
+            )} */}
           </nav>
         </div>
       </div>
