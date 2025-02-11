@@ -1,21 +1,21 @@
+'use client'; // Client Component
+
 import Link from 'next/link';
-import { Form } from '@/components/ui/auth-form';
-import { redirect } from 'next/navigation';
-import { createUser, getUser } from '@/app/db';
+import { Form } from '@/components/ui/form-signup';
+import { useState } from 'react';
 import { SubmitButton } from '@/components/ui/submit-button';
+import { Alert } from '@mui/material';
+import { registerUser } from '@/app/actions/registerAction'; // Import the server action
 
-export default function Login() {
+export default function SignUp() {
+  const [error, setError] = useState<string | null>(null);
+
   async function register(formData: FormData) {
-    'use server';
-    let email = formData.get('email') as string;
-    let password = formData.get('password') as string;
-    let user = await getUser(email);
-
-    if (user.length > 0) {
-      return 'User already exists'; // TODO: Handle errors with useFormStatus
-    } else {
-      await createUser(email, password);
-      redirect('/login');
+    try {
+      await registerUser(formData); // Call the server-side action
+      window.location.href = '/sign-in'; // Redirect on success (client-side redirect)
+    } catch (err: any) {
+      setError(err.message); // Handle any error (user already exists, etc.)
     }
   }
 
@@ -28,11 +28,18 @@ export default function Login() {
             Create an account with your email and password
           </p>
         </div>
+
+        {error && (
+          <Alert severity="warning" className="mx-4 mt-4">
+            {error} {/* Display the error message */}
+          </Alert>
+        )}
+
         <Form action={register}>
           <SubmitButton>Sign Up</SubmitButton>
           <p className="text-center text-sm text-gray-600">
             {'Already have an account? '}
-            <Link href="/login" className="font-semibold text-gray-800">
+            <Link href="/sign-in" className="font-semibold text-gray-800">
               Sign in
             </Link>
             {' instead.'}

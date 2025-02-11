@@ -15,12 +15,12 @@ export async function getUser(email: string) {
   return await db.select().from(users).where(eq(users.email, email));
 }
 
-export async function createUser(email: string, password: string) {
+export async function createUser(email: string, password: string, name: string) {
   const users = await ensureTableExists();
   let salt = genSaltSync(10);
   let hash = hashSync(password, salt);
 
-  return await db.insert(users).values({ email, password: hash });
+  return await db.insert(users).values({ email, password: hash, name });
 }
 
 async function ensureTableExists() {
