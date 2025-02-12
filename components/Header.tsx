@@ -20,6 +20,7 @@ const Header = () => {
               <li><Button variant="ghost" asChild><Link href="/enterprises"><Building2 className="mr-2 h-4 w-4" /> 企业会员</Link></Button></li>
               <li><Button variant="ghost" asChild><Link href="/events"><Calendar className="mr-2 h-4 w-4" /> 商会活动</Link></Button></li>
               <li><Button variant="ghost" asChild><Link href="/board-meetings"><FileText className="mr-2 h-4 w-4" /> 理事会议</Link></Button></li>
+              <li><Button variant="ghost" asChild><Link href="/news"><FileText className="mr-2 h-4 w-4" /> 新闻资讯</Link></Button></li>
               <li><Button variant="ghost" asChild><Link href="/protected"><User className="mr-2 h-4 w-4" /> 我的</Link></Button></li>
             </ul>
             

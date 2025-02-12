@@ -1,3 +1,6 @@
+import { SunMedium } from "lucide-react";
+import { title } from "process";
+
 const STRAPI_API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL || 'http://localhost:1337';
 
 async function fetchAPI(endpoint: string) {
@@ -28,38 +31,67 @@ export async function getCarouselImages() {
   ];
 }
 
-export async function getUpcomingEvents() {
-  // 返回占位符活动数据
+export async function getNews() {
   return [
     {
-      title: '占位符活动 1',
+      src: '/placeholder.svg',
+      id: '1',
+      title: 'News Title 1',
+      summary: 'Summary of news 1Summary of news 1Summary of news 1Summary of news 1Summary of news 1',
+      content: 'Full content of news 1 goes here.',
       date: '2024-01-01',
-      description: '这是一个占位符活动描述。',
-      image: '/placeholder.svg?height=200&width=400'
+      showOnHomepage: true
     },
     {
-      title: '占位符活动 2',
-      date: '2024-02-01',
-      description: '这是另一个占位符活动描述。',
-      image: '/placeholder.svg?height=200&width=400'
+      src: '/placeholder.svg',
+      id: '2',
+      title: 'News Title 2',
+      summary: 'Summary of news 2',
+      content: 'Full content of news 2 goes here.',
+      date: '2024-01-02',
+      showOnHomepage: false
+    },
+    {
+      src: '/placeholder.svg',
+      id: '3',
+      title: 'title1',
+      summary: 'summary1',
+      showOnHomepage: true
+    },
+    {
+      src: '/placeholder.svg',
+      id: '4',
+      title: 'title1',
+      summary: 'summary1',
+      showOnHomepage: true
     }
   ];
 }
 
-export async function getDirectors() {
+
+
+export async function getCoreMembers() {
   // 返回占位符理事数据
   return [
     {
-      name: '占位符理事 1',
-      company: '占位符公司 1',
-      description: '这是一个占位符理事描述。',
-      image: '/placeholder.svg?height=300&width=300'
+      name: '理事 1',
+      description: '这是一个占位符理事描述这是一个占位符理事描述这是一个占位符理事描述这是一个占位符理事描述这是一个占位符理事描述这是一个占位符理事描述这是一个占位符理事描述。',
+      image: '/placeholder.svg'
     },
     {
-      name: '占位符理事 2',
-      company: '占位符公司 2',
-      description: '这是另一个占位符理事描述。',
-      image: '/placeholder.svg?height=300&width=300'
+      name: '理事 2',
+      description: '这是另一个占位符理事描述。这是另一个占位符理事描述。这是另一个占位符理事描述。这是另一个占位符理事描述。这是另一个占位符理事描述。这是另一个占位符理事描述。',
+      image: '/placeholder.svg'
+    },
+    {
+      name: '理事 3',
+      description: '这是另一个占位符理事描述。这是另一个占位符理事描述。这是另一个占位符理事描述。这是另一个占位符理事描述。这是另一个占位符理事描述。这是另一个占位符理事描述。',
+      image: '/placeholder.svg'
+    },
+    {
+      name: '理事 4',
+      description: '这是另一个占位符理事描述。这是另一个占位符理事描述。这是另一个占位符理事描述。这是另一个占位符理事描述。这是另一个占位符理事描述。这是另一个占位符理事描述。',
+      image: '/placeholder.svg'
     }
   ];
 }
@@ -78,4 +110,4 @@ export async function getSponsors() {
       url: 'https://example.com'
     }
   ];
-} 
+}
