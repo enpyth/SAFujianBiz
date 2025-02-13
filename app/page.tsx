@@ -16,7 +16,6 @@ export default async function Home() {
   // Fetch data from Strapi
   const carouselImages = await getCarouselImages();
   const availableEvents = await getUpcomingEvents();
-  console.log(availableEvents);
   const directors = await getCoreMembers();
   const sponsors = await getSponsors();
   const newsItems = await getNews();

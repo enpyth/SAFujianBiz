@@ -1,3 +1,5 @@
+// ./app/sign-up/[[...sign-up]]/page.tsx
+
 'use client'; // Client Component
 
 import Link from 'next/link';
@@ -5,17 +7,26 @@ import { Form } from '@/components/ui/form-signup';
 import { useState } from 'react';
 import { SubmitButton } from '@/components/ui/submit-button';
 import { Alert } from '@mui/material';
-import { registerUser } from '@/app/actions/registerAction'; // Import the server action
 
 export default function SignUp() {
   const [error, setError] = useState<string | null>(null);
 
   async function register(formData: FormData) {
     try {
-      await registerUser(formData); // Call the server-side action
-      window.location.href = '/sign-in'; // Redirect on success (client-side redirect)
+      const response = await fetch('/api/sign-up', {
+        method: 'POST',
+        body: formData,
+      });
+      
+      if (response.ok) {
+        window.location.href = '/sign-in';
+      } else {
+        // Extract the error message from the response
+        const errorData = await response.json();
+        setError(errorData.error || "An unknown error occurred"); // Set the error message
+      }
     } catch (err: any) {
-      setError(err.message); // Handle any error (user already exists, etc.)
+      setError(err.message);
     }
   }
 
@@ -31,7 +42,7 @@ export default function SignUp() {
 
         {error && (
           <Alert severity="warning" className="mx-4 mt-4">
-            {error} {/* Display the error message */}
+            {error}
           </Alert>
         )}
 
